@@ -10,8 +10,6 @@ import { MdOutlineStarOutline } from "react-icons/md";
 import { SiReaddotcv } from "react-icons/si";
 import { GiGrowth } from "react-icons/gi";
 import Benfits from "../components/Benfits";
-
-
 export default function Home() {
 
   const jobs = [
@@ -84,6 +82,27 @@ export default function Home() {
       iconbackground: "#FA4444" ,
     }
   ]
+
+  const steps = [
+  {
+    number: 1,
+    title: "سجل بياناتك",
+    desc: "سجل بياناتك وكن جاهزاً في دقائق",
+    color: "bg-blue-800",
+  },
+  {
+    number: 2,
+    title: "إرفع سيرتك الذاتيه",
+    desc: "إرفع السيرة الذاتيه الخاصة بك وإبرز مهاراتك",
+    color: "bg-blue-600",
+  },
+  {
+    number: 3,
+    title: "قدم & إبدأ العمل",
+    desc: "قدم على العمل وكن جاهزاً للعمل في افضل الشركات",
+    color: "bg-blue-500",
+  },
+];
   return (
     <>
       {/* Hero Section */}
@@ -278,6 +297,53 @@ export default function Home() {
         paragraph={benfit.Pragraph}
       />
     ))}
+  </div>
+</section>
+ <section className="py-10 px-4" dir="rtl">
+      <h1 className="mb-10 text-center font-extrabold text-3xl text-blue-800">
+        كيف يعمل؟
+      </h1>
+
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+        {steps.map((step, index) => (
+          <div key={index} className="flex items-center gap-4">
+            <div className="w-64 border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition">
+              <div className="flex gap-2 items-center font-bold mb-2">
+                <h1
+                  className={`w-6 h-6 ${step.color} text-white rounded-full flex items-center justify-center text-sm`}
+                >
+                  {step.number}
+                </h1>
+                <h1>{step.title}</h1>
+              </div>
+              <p className="text-gray-500 text-sm">{step.desc}</p>
+            </div>
+
+            {index !== steps.length - 1 && (
+              <FaArrowLeft className="text-gray-400 hidden md:block" />
+            )}
+          </div>
+        ))}
+      </div>
+    </section>  
+<section className="flex justify-center mt-10 px-4 mb-7" dir="rtl">
+  <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-center gap-6 bg-gradient-to-l from-blue-800 to-blue-600 p-6 md:p-8 rounded-2xl shadow-lg">
+
+    {/* Texts */}
+    <div className="text-white text-center md:text-right">
+      <h1 className="text-xl md:text-2xl font-bold mb-2">
+        جاهز لأخذ خطوتك التالية؟
+      </h1>
+      <p className="text-sm md:text-base text-white/90">
+        انضم للعديد من المحترفين وجد وظيفتك اليوم.
+      </p>
+    </div>
+
+    {/* Button */}
+    <button className="bg-white text-blue-800 px-6 py-2 rounded-xl font-bold hover:bg-gray-100 transition">
+      تصفح الوظائف
+    </button>
+
   </div>
 </section>
     </>
