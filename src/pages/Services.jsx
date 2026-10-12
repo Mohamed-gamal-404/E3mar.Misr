@@ -14,9 +14,9 @@ import {
 } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
-import e3marHero from "../../E3mar.Misr/src/assets/images/servicr-hero.png"
-import e3marHr from "../../E3mar.Misr/src/assets/images/E3mar-hr-ph.jpg"
-import e3marempo from "../../E3mar.Misr/src/assets/images/e3mar-employees.jpg"
+import e3marHero from "../assets/images/servicr-hero.png"
+import e3marHr from "../assets/images/E3mar-hr-ph.jpg"
+import e3marempo from "../assets/images/e3mar-employees.jpg"
 export default function Services() {
   return (
     <main dir="rtl" className="bg-white text-blue-950">

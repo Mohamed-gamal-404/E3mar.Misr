@@ -13,8 +13,8 @@ import {
 import { MdWork, MdVerifiedUser } from "react-icons/md";
 import { motion } from "framer-motion";
 
-import e3marCover from "../../E3mar.Misr/src/assets/images/e3mar-about-cover.png";
-import e3marBui from "../../E3mar.Misr/src/assets/images/e3mar-2.jpg";
+import e3marCover from "../assets/images/e3mar-about-cover.png";
+import e3marBui from "../assets/images/e3mar-2.jpg";
 
 import ScrollReveal from "../components/ScrollReveal";
 
