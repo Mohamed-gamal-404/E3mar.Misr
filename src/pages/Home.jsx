@@ -7,7 +7,7 @@ import { VscGitStashApply } from "react-icons/vsc";
 import { MdSecurity, MdOutlineStarOutline } from "react-icons/md";
 import { SiReaddotcv } from "react-icons/si";
 import { GiGrowth } from "react-icons/gi";
-import JOBIMAGE from "../assets/images/job offers-bro.png";
+import JOBIMAGE from "../assets/images/jobOffers-bro.png";
 import RESUME from "../assets/images/Resume folder-cuate.png";
 import Benfits from "../components/Benfits";
 import ScrollReveal from "../components/ScrollReveal";
