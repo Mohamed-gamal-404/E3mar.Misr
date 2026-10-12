@@ -1,6 +1,7 @@
 import { useState } from "react"
 import logo from "../assets/images/e3mqr-icon.png"
 import { FaBars, FaTimes } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -38,27 +39,40 @@ export default function Navbar() {
 
     
         <ul className="hidden md:flex items-center text-blue-900 gap-6 font-medium">
-          <li className="hover:text-[#ffd900] cursor-pointer">الصفحة الرئيسية</li>
-          <li className="hover:text-[#ffd900] cursor-pointer">من نحن</li>
-          <li className="hover:text-[#ffd900] cursor-pointer">خدماتنا</li>
-          <li className="hover:text-[#ffd900] cursor-pointer">الوظائف المتاحة</li>
+          <li className="hover:text-[#ffd900] cursor-pointer">
+            <Link to="/">الصفحة الرئيسية</Link>
+          </li>
+          <li className="hover:text-[#ffd900] cursor-pointer">
+            <Link to="/About">
+            من نحن
+            </Link>
+          </li>
+          <li className="hover:text-[#ffd900] cursor-pointer">
+            <Link to='/services'>
+            خدماتنا
+            </Link>
+            </li>
+          <li className="hover:text-[#ffd900] cursor-pointer">
+            تواصل معنا
+          </li>
         </ul>
 
         {/* Desktop Button */}
+      
         <button className="hidden md:block px-4 py-2 text-white bg-blue-900 rounded-xl hover:bg-[#ffd900] hover:font-bold transition">
-        إبحث عن وظيفة!
+          <Link to="/jobs">إبحث عن وظيفىة</Link>
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-blue-800  px-4 py-3 space-y-3">
-          <p className=" cursor-pointer hover:text-[#ffd900]">الصفحة الرئيسية</p>
-          <p className="cursor-pointer hover:text-[#ffd900]">من نحن</p>
-          <p className="cursor-pointer hover:text-[#ffd900]">خدماتنا</p>
-          <p className="cursor-pointer hover:text-[#ffd900]">الوظائف المتاحة</p>
+        <div className="md:hidden bg-blue-800  px-4 py-3 space-y-3 flex flex-col">
+          <Link className=" cursor-pointer hover:text-[#ffd900] " to="/">الصفحة الرئيسية</Link>
+          <Link className="cursor-pointer hover:text-[#ffd900]" to='/About'>من نحن</Link>
+          <Link className="cursor-pointer hover:text-[#ffd900]" to="/services">خدماتنا</Link>
+          <p className="cursor-pointer hover:text-[#ffd900]">تواصل معنا</p>
 
           <button className="w-full mt-2 px-4 py-2 bg-white text-blue-900 rounded hover:bg-[#ffd900] font-medium">
-            قدم دلوقتي !
+          <Link to="/jobs"> إيحث عن وظيفة</Link>
           </button>
         </div>
       )}
