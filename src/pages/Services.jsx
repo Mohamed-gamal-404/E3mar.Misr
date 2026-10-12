@@ -11,7 +11,7 @@ import {
   FaBullseye,
   FaShieldAlt,
   FaUsers,
-} from "react-icons/fa";
+} from "react-icons/fa";  
 
 import { Link } from "react-router-dom";
 import e3marHero from "../assets/images/servicr-hero.png"
