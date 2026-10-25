@@ -1,0 +1,415 @@
+/* =========================================
+   EMMAR MISR - HOMEPAGE STYLES & ANIMATIONS
+   ========================================= */
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+
+.hero-section {
+  background-size: 180% 180%;
+  animation: hero-gradient 16s ease-in-out infinite alternate;
+}
+
+.hero-copy {
+  animation: enter-from-right 850ms
+    cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-visual {
+  animation: enter-from-left 950ms 120ms
+    cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-ring {
+  animation: ring-drift 12s ease-in-out infinite alternate;
+}
+
+.hero-ring-two {
+  animation-delay: -5s;
+}
+
+.floating-glow {
+  animation: glow-pulse 4.5s ease-in-out infinite;
+}
+
+/* حركة صورة الهيرو */
+
+.hero-photo {
+  transition:
+    transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 500ms ease;
+}
+
+.hero-visual:hover .hero-photo {
+  transform: scale(1.035);
+  filter: saturate(1.06);
+}
+
+/* تفاصيل الهيرو */
+
+.hero-stat {
+  transition:
+    transform 250ms ease,
+    background-color 250ms ease;
+}
+
+.hero-stat:hover {
+  transform: translateY(-4px);
+}
+
+/* =========================================
+   SCROLL REVEAL
+   ظهور الأقسام أثناء النزول في الصفحة
+   ========================================= */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   SERVICE & PROCESS CARDS
+   ========================================= */
+
+.service-card,
+.process-card {
+  will-change: transform;
+}
+
+.service-card:nth-child(2),
+.process-card:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.service-card:nth-child(3),
+.process-card:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+/* حركة أيقونات الخدمات */
+
+.service-card > div:nth-child(2) > div {
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.service-card:hover > div:nth-child(2) > div {
+  transform: rotate(-5deg) scale(1.08);
+  box-shadow: 0 8px 22px rgba(214, 183, 108, 0.2);
+}
+
+/* حركة أرقام الخطوات */
+
+.process-card > div:first-child > span {
+  transition: transform 300ms ease;
+}
+
+.process-card:hover > div:first-child > span {
+  transform: translateY(-4px) rotate(-4deg);
+}
+
+/* =========================================
+   JOBS ILLUSTRATION
+   ========================================= */
+
+.resume-illustration {
+  animation: illustration-float 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* =========================================
+   PARTNERS SECTION
+   الشريط المتحرك لشعارات العملاء
+   ========================================= */
+
+.partners-section {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+}
+
+/* الحاوية الخارجية للشريط */
+
+.partners-marquee {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 15px 0 22px;
+  direction: ltr;
+}
+
+/* مسار الحركة */
+
+.partners-marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: max-content;
+  max-width: none;
+
+  animation: partners-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+/* كل مجموعة تحتوي على اللوجوهات */
+
+.partners-marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+/* الكارت الخاص بكل لوجو */
+
+.partner-marquee-card {
+  box-sizing: border-box;
+
+  display: flex;
+  flex: 0 0 180px;
+  width: 180px;
+  min-width: 180px;
+  height: 105px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px;
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 14px;
+
+  box-shadow: 0 4px 14px rgba(7, 27, 58, 0.06);
+
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+/* ضبط حجم الصور مهما كان حجم ملف اللوجو الأصلي */
+
+.partner-marquee-card img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  flex: 0 1 auto;
+  object-fit: contain;
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  transition: transform 300ms ease;
+}
+
+/* تأثير عند مرور الماوس */
+
+.partner-marquee-card:hover {
+  border-color: #d6b76c;
+  box-shadow: 0 8px 24px rgba(7, 27, 58, 0.1);
+  transform: translateY(-3px);
+}
+
+.partner-marquee-card:hover img {
+  transform: scale(1.05);
+}
+
+/* الحركة من اليمين للشمال بشكل مستمر */
+
+@keyframes partners-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* وقف الحركة عند مرور الماوس */
+
+.partners-marquee:hover .partners-marquee-track {
+  animation-play-state: paused;
+}
+
+/* =========================================
+   KEYFRAMES
+   ========================================= */
+
+/* ظهور محتوى الهيرو من اليمين */
+
+@keyframes enter-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ظهور الصورة من اليسار */
+
+@keyframes enter-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* حركة الدوائر */
+
+@keyframes ring-drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(12px, 18px, 0) rotate(8deg);
+  }
+}
+
+/* نبض الإضاءة */
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* حركة صورة الوظائف */
+
+@keyframes illustration-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* حركة ألوان خلفية الهيرو */
+
+@keyframes hero-gradient {
+  from {
+    background-position: 0% 20%;
+  }
+
+  to {
+    background-position: 100% 80%;
+  }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 640px) {
+  /* الشريط المتحرك على الموبايل */
+
+  .partners-marquee-track {
+    animation-duration: 24s;
+  }
+
+  .partners-marquee-group {
+    gap: 14px;
+    padding-right: 14px;
+  }
+
+  .partner-marquee-card {
+    flex-basis: 140px;
+    width: 140px;
+    min-width: 140px;
+    height: 85px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .partner-marquee-card img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* تقليل حركات التحويم على الشاشات الصغيرة */
+
+  .hero-visual:hover .hero-photo {
+    transform: none;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+   احترام إعداد تقليل الحركة
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section,
+  .hero-copy,
+  .hero-visual,
+  .hero-ring,
+  .floating-glow,
+  .resume-illustration {
+    animation: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .partners-marquee {
+    overflow-x: auto;
+  }
+
+  .partners-marquee-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .partners-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .partner-marquee-card,
+  .partner-marquee-card img {
+    transition: none;
+  }
+}

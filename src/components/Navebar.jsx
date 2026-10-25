@@ -1,82 +1,174 @@
-import { useState } from "react"
-import logo from "../assets/images/e3mqr-icon.png"
-import { FaBars, FaTimes } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import {
+  FaBars,
+  FaTimes,
+  FaArrowLeft,
+} from "react-icons/fa";
+
+import logo from "../assets/images/e3mqr-icon.png";
+
+const links = [
+  { label: "الرئيسية", to: "/", end: true },
+  { label: "من نحن", to: "/about" },
+  { label: "خدماتنا", to: "/services" },
+  { label: "فرص العمل", to: "/jobs" },
+  { label: "تواصل معنا", to: "/contact" },
+];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const navLinkClass = ({ isActive }) =>
+    [
+      "relative flex min-h-10 items-center text-[14px] font-medium",
+      "transition-colors duration-200",
+      isActive
+        ? "text-[#A78436]"
+        : "text-[#27364B] hover:text-[#A78436]",
+    ].join(" ");
 
   return (
-    <section dir="rtl" className="w-full  text-white">
-      
-      <div className="flex items-center justify-between px-4 py-3 md:px-8">
+    <header
+      dir="rtl"
+      className="sticky top-0 z-50 border-b border-[#E9ECF0] bg-white"
+    >
+      <div className="mx-auto flex min-h-[82px] max-w-[1440px] items-center justify-between gap-5 px-5 sm:px-8 lg:px-12">
 
-        {/* Logo + Name */}
-        <div className="flex items-center gap-2">
-          <img 
-            src={logo} 
-            alt="E3mar-Logo" 
-            className="w-10 h-10 md:w-14 md:h-14"
+        {/* BRAND */}
+
+        <Link
+          to="/"
+          onClick={closeMenu}
+          aria-label="إعمار مصر - الصفحة الرئيسية"
+          className="flex shrink-0 items-center gap-3"
+        >
+          <img
+            src={logo}
+            alt="شعار إعمار مصر"
+            className="h-12 w-12 object-contain sm:h-[54px] sm:w-[54px]"
           />
 
-          <div className="flex flex-col leading-tight">
-            <span className="text-blue-900 text-sm md:text-base font-medium">
+          <div className="flex flex-col justify-center">
+            <span className="text-[19px] font-extrabold leading-7 tracking-tight text-[#071B3A]">
               إعمار مصر
             </span>
-            <span className=" text-blue-900 text-xs md:text-sm opacity-80">
-              Emaar Misr
+
+            <span className="mt-0.5 text-[10px] font-medium tracking-[0.04em] text-[#747E8B] sm:text-[11px]">
+              لخدمات القوى العاملة والتشغيل
             </span>
           </div>
-        </div>
+        </Link>
 
-        {/* Menu Icon (Mobile only) */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-xl text-white"
+        {/* DESKTOP NAVIGATION */}
+
+        <nav
+          aria-label="القائمة الرئيسية"
+          className="hidden items-center gap-5 xl:flex 2xl:gap-7"
         >
-          {open ? <FaTimes className="text-blue-900" /> : <FaBars className="text-blue-900" />}
-        </button>
+          {links.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={navLinkClass}
+            >
+              {({ isActive }) => (
+                <>
+                  <span>{item.label}</span>
 
-    
-        <ul className="hidden md:flex items-center text-blue-900 gap-6 font-medium">
-          <li className="hover:text-[#ffd900] cursor-pointer">
-            <Link to="/">الصفحة الرئيسية</Link>
-          </li>
-          <li className="hover:text-[#ffd900] cursor-pointer">
-            <Link to="/About">
-            من نحن
-            </Link>
-          </li>
-          <li className="hover:text-[#ffd900] cursor-pointer">
-            <Link to='/services'>
-            خدماتنا
-            </Link>
-            </li>
-          <li className="hover:text-[#ffd900] cursor-pointer">
-            تواصل معنا
-          </li>
-        </ul>
+                  {isActive && (
+                    <span className="absolute inset-x-0 -bottom-[21px] h-[2px] rounded-full bg-[#B99A55]" />
+                  )}
+                </>
+              )}
+            </NavLink>
+          ))}
+        </nav>
 
-        {/* Desktop Button */}
-      
-        <button className="hidden md:block px-4 py-2 text-white bg-blue-900 rounded-xl hover:bg-[#ffd900] hover:font-bold transition">
-          <Link to="/jobs">إبحث عن وظيفىة</Link>
+        {/* DESKTOP CTA */}
+
+        <Link
+          to="/contact"
+          className="group hidden shrink-0 items-center gap-3 rounded-md bg-[#071B3A] px-5 py-3 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-[#142F50] lg:inline-flex"
+        >
+          <span>اطلب خدمة</span>
+
+          <FaArrowLeft
+            className="text-[11px] text-[#D6B76C] transition-transform duration-200 group-hover:-translate-x-1"
+          />
+        </Link>
+
+        {/* MOBILE MENU BUTTON */}
+
+        <button
+          type="button"
+          aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navbar"
+          onClick={() => setMenuOpen((previous) => !previous)}
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E4E7EB] text-[#071B3A] transition-colors hover:border-[#D6B76C] lg:hidden"
+        >
+          {menuOpen ? (
+            <FaTimes size={17} />
+          ) : (
+            <FaBars size={17} />
+          )}
         </button>
       </div>
 
-      {open && (
-        <div className="md:hidden bg-blue-800  px-4 py-3 space-y-3 flex flex-col">
-          <Link className=" cursor-pointer hover:text-[#ffd900] " to="/">الصفحة الرئيسية</Link>
-          <Link className="cursor-pointer hover:text-[#ffd900]" to='/About'>من نحن</Link>
-          <Link className="cursor-pointer hover:text-[#ffd900]" to="/services">خدماتنا</Link>
-          <p className="cursor-pointer hover:text-[#ffd900]">تواصل معنا</p>
+      {/* MOBILE NAVIGATION */}
 
-          <button className="w-full mt-2 px-4 py-2 bg-white text-blue-900 rounded hover:bg-[#ffd900] font-medium">
-          <Link to="/jobs"> إيحث عن وظيفة</Link>
-          </button>
-        </div>
-      )}
+      <div
+        id="mobile-navbar"
+        className={[
+          "overflow-hidden border-t border-[#E9ECF0] bg-white transition-[max-height,opacity] duration-200 lg:hidden",
+          menuOpen
+            ? "max-h-[440px] opacity-100"
+            : "pointer-events-none max-h-0 border-t-transparent opacity-0",
+        ].join(" ")}
+        aria-hidden={!menuOpen}
+      >
+        <nav
+          aria-label="قائمة الموبايل"
+          className="mx-auto flex max-w-[1440px] flex-col gap-1 px-5 py-4 sm:px-8"
+        >
+          {links.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              onClick={closeMenu}
+              tabIndex={menuOpen ? 0 : -1}
+              className={({ isActive }) =>
+                [
+                  "flex min-h-11 items-center justify-between rounded-md px-4 text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-[#F8F5ED] text-[#8E7130]"
+                    : "text-[#27364B] hover:bg-[#F7F8FA]",
+                ].join(" ")
+              }
+            >
+              {item.label}
 
-    </section>
-  )
+              <FaArrowLeft className="text-[10px] opacity-50" />
+            </NavLink>
+          ))}
+
+          <Link
+            to="/contact"
+            onClick={closeMenu}
+            tabIndex={menuOpen ? 0 : -1}
+            className="mt-2 flex min-h-12 items-center justify-center gap-3 rounded-md bg-[#071B3A] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#142F50]"
+          >
+            اطلب خدمة
+
+            <FaArrowLeft className="text-[11px] text-[#D6B76C]" />
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
 }

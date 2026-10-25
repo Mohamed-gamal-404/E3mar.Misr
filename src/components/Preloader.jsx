@@ -34,8 +34,8 @@ function Preloader() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        EMMAR MISR
-      </motion.p>
+<span className="text-2xl font-bold">        شركة إعمار مصر لخدمات المصانع والشركات
+</span>      </motion.p>
     </motion.div>
   );
 }

@@ -1,400 +1,843 @@
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import "../../src/Home.css";
 
-import { motion } from "framer-motion";
-import { FaArrowLeft } from "react-icons/fa";
-import { PiBagSimpleFill } from "react-icons/pi";
-import { IoMdCheckmark } from "react-icons/io";
-import { VscGitStashApply } from "react-icons/vsc";
-import { MdSecurity, MdOutlineStarOutline } from "react-icons/md";
-import { SiReaddotcv } from "react-icons/si";
-import { GiGrowth } from "react-icons/gi";
-import JOBIMAGE from "../assets/images/JobOffers-bro.png";
+import {
+  FaArrowLeft,
+  FaUsers,
+  FaHandshake,
+  FaCheckCircle,
+  FaClipboardCheck,
+  FaBuilding,
+  FaPhoneAlt,
+  FaBullseye,
+  FaRegLightbulb,
+} from "react-icons/fa";
+
+import WORKFORCE from "../assets/images/e3marworkforce.png";
+import COMPANYIMAGE from "../assets/images/e3mar-2.jpg";
 import RESUME from "../assets/images/Resume folder-cuate.png";
-import Benfits from "../components/Benfits";
-import ScrollReveal from "../components/ScrollReveal";
 
 export default function Home() {
-  const benfits = [
+  useEffect(() => {
+    const elements = document.querySelectorAll(".reveal-on-scroll");
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      elements.forEach((element) =>
+        element.classList.add("is-visible")
+      );
+
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px",
+      }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // أضف شعارات العملاء الحقيقية هنا عند توفرها.
+  // مثال:
+  // { name: "Company Name", logo: "/partners/company-logo.png" }
+
+  const partners = [
+  {
+    name: "BETA ELECTRIC",
+    logo: "/partners/beta-electric.jpg",
+  },
+  {
+    name: "Eastern Company S.A.E.",
+    logo: "/partners/eastern-company.png",
+  },
+  {
+    name: "FINE",
+    logo: "/partners/fine.png",
+  },
+  {
+    name: "شركة النيل",
+    logo: "/partners/partner-nile.svg",
+  },
+  {
+    name: "الأهرام للصناعات الغذائية",
+    logo: "/partners/al-ahram-food.png",
+  },
+  {
+    name: "أرامكس - ARAMEX",
+    logo: "/partners/aramex.png",
+  },
+  {
+    name: "Carreir",
+    logo: "/partners/Carreir.png",
+  },
+  {
+    name: "Suzuki",
+    logo: "/partners/Suzuki.png",
+  }
+];
+
+  const services = [
     {
-      icon: <VscGitStashApply />,
-      title: "سهولة في التقديم",
-      Pragraph: "قدم على الوظائف في ضغطة واحدة",
-      iconbackground: "#3B83CB",
+      number: "01",
+      icon: <FaUsers />,
+      title: "حلول القوى العاملة",
+      description:
+        "فهم احتياجات شركتك ومناقشة حلول القوى العاملة المناسبة لطبيعة نشاطك.",
     },
     {
-      icon: <MdSecurity />,
-      title: "وظائف موثوقة",
-      Pragraph: "كل الوظائف حقيقية وموثوقة",
-      iconbackground: "#18A444",
+      number: "02",
+      icon: <FaBullseye />,
+      title: "دعم احتياجات التشغيل",
+      description:
+        "التعرف على متطلبات التشغيل وتنسيق خطوات التعاون بما يتناسب مع احتياجات شركتك.",
     },
     {
-      icon: <MdOutlineStarOutline />,
-      title: "الوصول الذكي",
-      Pragraph: "جد كل الوظائف التي تناسبك",
-      iconbackground: "#FFAA00",
-    },
-    {
-      icon: <SiReaddotcv />,
-      title: "بناء الوثائق",
-      Pragraph: "ابني وثيقة احترافيه في دقائق",
-      iconbackground: "#AA00FF",
-    },
-    {
-      icon: <GiGrowth />,
-      title: "تطوير مهاراتك",
-      Pragraph: "نسرع تطورك المهني والوظيفي",
-      iconbackground: "#FA4444",
+      number: "03",
+      icon: <FaHandshake />,
+      title: "شراكات مستمرة",
+      description:
+        "تواصل واضح لفهم المتطلبات وبناء علاقة عمل قائمة على التعاون والثقة.",
     },
   ];
 
   const steps = [
     {
-      number: 1,
-      title: "سجل بياناتك",
-      desc: "سجل بياناتك وكن جاهزاً في دقائق",
-      color: "bg-blue-800",
+      number: "01",
+      title: "شاركنا احتياجاتك",
+      description:
+        "تواصل معنا واشرح طبيعة نشاطك واحتياجات شركتك من القوى العاملة.",
     },
     {
-      number: 2,
-      title: "إرفع سيرتك الذاتيه",
-      desc: "إرفع السيرة الذاتيه الخاصة بك وإبرز مهاراتك",
-      color: "bg-blue-600",
+      number: "02",
+      title: "نحدد متطلباتك",
+      description:
+        "نتعرف على تفاصيل طلبك ونناقش الحلول المتاحة وفقًا لاحتياجاتك.",
     },
     {
-      number: 3,
-      title: "قدم & إبدأ العمل",
-      desc: "قدم على العمل وكن جاهزاً للعمل في افضل الشركات",
-      color: "bg-blue-500",
+      number: "03",
+      title: "ابدأ التعاون",
+      description:
+        "نتفق على الخطوات التالية وآلية تنفيذ الخدمة وفقًا لما يتم الاتفاق عليه.",
     },
   ];
 
   return (
-    <>
-      {/* Hero Section */}
-      <section
-        dir="rtl"
-        className="min-h-screen px-6 lg:px-16 py-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-12"
-      >
-        {/* Hero Content */}
-        <ScrollReveal
-          direction="right"
-          className="w-full max-w-2xl"
-        >
-          <div className="text-center lg:text-right">
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
-            >
-              إبحث عن وظيفة أحلامك
-            </motion.h1>
+    <main
+      dir="rtl"
+      className="overflow-hidden bg-white text-slate-900"
+    >
+      {/* HERO SECTION */}
 
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-2"
-            >
-              لبناء <span className="text-blue-900">مستقبلك!</span>
-            </motion.h1>
+      <section className="hero-section relative isolate overflow-hidden bg-gradient-to-br from-[#071B3A] via-[#102F56] to-[#071B3A] text-white">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full border border-[#D6B76C]/20"
+        />
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-gray-500 text-lg sm:text-xl mt-6 leading-8"
-            >
-              نغطي العديد من فرص العمل من خلال أفضل الشركات
-              والمصانع داخل مصر
-            </motion.p>
+        <div
+          aria-hidden="true"
+          className="hero-ring hero-ring-two pointer-events-none absolute -left-12 -top-12 h-56 w-56 rounded-full border border-[#D6B76C]/20"
+        />
 
-            {/* Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
-              className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <motion.button
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2 }}
-                className="bg-blue-900 text-white px-8 py-3 rounded-xl hover:bg-blue-800 duration-300 shadow-lg"
+        <div className="relative mx-auto grid min-h-[650px] max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 sm:px-10 lg:grid-cols-2 lg:px-12 lg:py-20">
+          {/* HERO TEXT */}
+
+          <div className="hero-copy relative z-10 max-w-2xl">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#D6B76C]/30 bg-white/5 px-4 py-2">
+              <span className="h-2 w-2 rounded-full bg-[#D6B76C]" />
+
+              <span className="text-sm font-medium text-[#E7D4A3]">
+                EMMAR MISR · WORKFORCE SOLUTIONS
+              </span>
+            </div>
+
+            <h1 className="text-4xl font-extrabold leading-[1.35] sm:text-5xl lg:text-6xl">
+              القوة البشرية
+              <br />
+              المناسبة
+              <span className="mr-3 inline-block text-[#D6B76C]">
+                لنجاح أعمالك
+              </span>
+            </h1>
+
+            <p className="mt-7 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
+              إعمار مصر شريكك في مناقشة احتياجات القوى العاملة ودعم
+              متطلبات التشغيل، من خلال حلول تتناسب مع طبيعة نشاط شركتك
+              واحتياجاتها.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center justify-center gap-3 rounded-xl bg-[#D6B76C] px-7 py-4 font-bold text-[#071B3A] shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-[#E7CC8B]"
               >
-                ابحث عن وظيفة
-              </motion.button>
+                اطلب خدمة لشركتك
 
-              <motion.button
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2 }}
-                className="border border-blue-900 text-blue-900 px-8 py-3 rounded-xl hover:bg-blue-50 duration-300"
+                <FaArrowLeft className="transition-transform duration-300 group-hover:-translate-x-1" />
+              </Link>
+
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/25 px-7 py-4 font-semibold text-white transition duration-300 hover:border-[#D6B76C] hover:bg-white/5"
               >
-                نشر وظيفة
-              </motion.button>
-            </motion.div>
+                اكتشف خدماتنا
+                <FaArrowLeft />
+              </Link>
+            </div>
 
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-8 mt-10"
-            >
-              <div>
-                <h2 className="text-2xl font-bold text-blue-900">
-                  +10K
-                </h2>
-                <p className="text-gray-500">وظيفة متاحة</p>
-              </div>
+            {/* HERO FEATURES */}
 
-              <div>
-                <h2 className="text-2xl font-bold text-blue-900">
-                  +5K
-                </h2>
-                <p className="text-gray-500">شركة موثوقة</p>
-              </div>
-
-              <div>
-                <h2 className="text-2xl font-bold text-blue-900">
-                  +50K
-                </h2>
-                <p className="text-gray-500">باحث عن عمل</p>
-              </div>
-            </motion.div>
-          </div>
-        </ScrollReveal>
-
-        {/* Hero Image */}
-        <ScrollReveal
-          direction="left"
-          delay={0.2}
-          className="flex justify-center w-full lg:flex-1"
-        >
-          <motion.div
-            className="flex justify-center w-full"
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <img
-              className="w-full max-w-md lg:max-w-xl"
-              src={JOBIMAGE}
-              alt="Job Search Illustration"
-            />
-          </motion.div>
-        </ScrollReveal>
-      </section>
-
-      {/* Explore Jobs Section */}
-      <section className="px-6 lg:px-16 py-10" dir="rtl">
-        <ScrollReveal>
-          <div className="w-full bg-blue-900 rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-10 shadow-xl overflow-hidden">
-
-            {/* Text Content */}
-            <div className="flex-1">
-              <div className="flex items-center gap-4">
-                <div className="bg-white p-3 rounded-full">
-                  <PiBagSimpleFill className="text-4xl text-blue-900" />
+            <div className="mt-10 grid grid-cols-1 gap-4 border-t border-white/15 pt-7 sm:grid-cols-3">
+              <div className="hero-stat flex items-center gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-xl text-[#D6B76C]">
+                  <FaBuilding />
                 </div>
 
                 <div>
-                  <h1 className="font-bold text-3xl text-white">
-                    للباحثين عن وظائف
-                  </h1>
+                  <p className="font-bold text-white">
+                    حلول للشركات
+                  </p>
 
-                  <p className="text-blue-100 mt-2">
-                    إبحث عن الوظيفة المناسبة لمهاراتك وخبراتك
+                  <p className="mt-1 text-xs text-slate-400">
+                    وفقًا للاحتياجات
                   </p>
                 </div>
               </div>
 
-              {/* Features */}
-              <div className="mt-8 space-y-5">
-                {[
-                  "تصفح مئات الوظائف بسهولة",
-                  "ارفع السيرة الذاتية الخاصة بك",
-                  "تواصل مع أفضل الشركات والمصانع",
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.15,
-                    }}
-                    className="flex items-center gap-3 text-white"
-                  >
-                    <IoMdCheckmark className="text-green-400 text-2xl" />
-                    <h3 className="text-lg">{feature}</h3>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Button */}
-              <motion.button
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                className="mt-8 bg-white text-blue-900 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 duration-300"
-              >
-                ابدأ الآن
-              </motion.button>
-            </div>
-
-            {/* Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7 }}
-              className="flex justify-center flex-1"
-            >
-              <img
-                className="w-full max-w-sm lg:max-w-md"
-                src={RESUME}
-                alt="Resume Illustration"
-              />
-            </motion.div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Benefits Section */}
-      <section
-        className="w-full py-16 px-4 sm:px-6 lg:px-12"
-        dir="rtl"
-      >
-        <ScrollReveal>
-          <div className="text-center mb-12">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-blue-800">
-              لماذا تختار إعمار مصر ؟
-            </h1>
-
-            <p className="text-gray-500 mt-3 text-sm sm:text-base">
-              نوفر لك أفضل فرص العمل والخدمات بأحدث التقنيات
-            </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Benefits Grid */}
-        <div
-          className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-5
-            place-items-center
-          "
-        >
-          {benfits.map((benfit, index) => (
-            <ScrollReveal
-              key={index}
-              delay={index * 0.12}
-              direction="up"
-              className="w-full"
-            >
-              <motion.div
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.25 }}
-                className="w-full"
-              >
-                <Benfits
-                  icon={benfit.icon}
-                  background={benfit.iconbackground}
-                  title={benfit.title}
-                  paragraph={benfit.Pragraph}
-                />
-              </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-10 px-4" dir="rtl">
-        <ScrollReveal>
-          <h1 className="mb-10 text-center font-extrabold text-3xl text-blue-800">
-            كيف يعمل؟
-          </h1>
-        </ScrollReveal>
-
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          {steps.map((step, index) => (
-            <ScrollReveal
-              key={step.number}
-              delay={index * 0.18}
-              className="flex items-center gap-4"
-            >
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-                className="w-64 border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition"
-              >
-                <div className="flex gap-2 items-center font-bold mb-2">
-                  <h1
-                    className={`w-6 h-6 ${step.color} text-white rounded-full flex items-center justify-center text-sm`}
-                  >
-                    {step.number}
-                  </h1>
-
-                  <h1>{step.title}</h1>
+              <div className="hero-stat flex items-center gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-xl text-[#D6B76C]">
+                  <FaUsers />
                 </div>
 
-                <p className="text-gray-500 text-sm">
-                  {step.desc}
-                </p>
-              </motion.div>
+                <div>
+                  <p className="font-bold text-white">
+                    القوى العاملة
+                  </p>
 
-              {index !== steps.length - 1 && (
-                <FaArrowLeft className="text-gray-400 hidden md:block" />
-              )}
-            </ScrollReveal>
-          ))}
+                  <p className="mt-1 text-xs text-slate-400">
+                    محور اهتمامنا
+                  </p>
+                </div>
+              </div>
+
+              <div className="hero-stat flex items-center gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-xl text-[#D6B76C]">
+                  <FaHandshake />
+                </div>
+
+                <div>
+                  <p className="font-bold text-white">
+                    التعاون
+                  </p>
+
+                  <p className="mt-1 text-xs text-slate-400">
+                    بداية كل شراكة
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* HERO IMAGE */}
+
+          <div className="hero-visual relative mx-auto w-full max-w-xl lg:mr-auto">
+            <div className="absolute -inset-4 rounded-[2rem] border border-[#D6B76C]/25 sm:-inset-6" />
+
+            <div className="floating-glow absolute -bottom-5 -right-5 z-10 h-28 w-28 rounded-2xl bg-[#D6B76C]/15 blur-2xl" />
+
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/5 p-2 shadow-2xl">
+              <img
+                src={WORKFORCE}
+                alt="فريق العمل في إعمار مصر"
+                className="hero-photo h-[350px] w-full rounded-[1.1rem] object-cover sm:h-[440px]"
+                fetchPriority="high"
+              />
+
+              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-[#071B3A]/90 p-5 shadow-xl backdrop-blur-md sm:inset-x-7 sm:bottom-7">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#D6B76C] text-xl text-[#071B3A]">
+                    <FaUsers />
+                  </div>
+
+                  <div>
+                    <h2 className="text-lg font-bold text-white sm:text-xl">
+                      الإنسان أساس النجاح
+                    </h2>
+
+                    <p className="mt-1 text-sm leading-6 text-slate-300">
+                      نفهم احتياجات عملك لنناقش الحل المناسب.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              aria-hidden="true"
+              className="absolute -right-3 top-10 h-16 w-1 rounded-full bg-[#D6B76C] sm:-right-5"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section
-        className="flex justify-center mt-10 px-4 mb-7"
-        dir="rtl"
-      >
-        <ScrollReveal className="w-full max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="w-full flex flex-col md:flex-row justify-between items-center gap-6 bg-gradient-to-l from-blue-800 to-blue-600 p-6 md:p-8 rounded-2xl shadow-lg"
-          >
-            {/* Texts */}
-            <div className="text-white text-center md:text-right">
-              <h1 className="text-xl md:text-2xl font-bold mb-2">
-                جاهز لأخذ خطوتك التالية؟
-              </h1>
+{/* MOVING PARTNERS LOGOS */}
+{partners.length > 0 && (
+  <section className="reveal-on-scroll partners-section bg-white py-16 sm:py-20">
+    <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
+      <div className="mb-10 text-center">
+        <p className="text-sm font-bold tracking-[0.18em] text-[#A78436]">
+          OUR CLIENTS & PARTNERS
+        </p>
 
-              <p className="text-sm md:text-base text-white/90">
-                انضم للعديد من المحترفين وجد وظيفتك اليوم.
+        <h2 className="mt-3 text-2xl font-extrabold text-[#071B3A] sm:text-3xl">
+          نفخر بثقة عملائنا
+        </h2>
+
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+          شركاء نعتز بالعمل معهم، ونسعى لبناء علاقات ناجحة ومستدامة.
+        </p>
+      </div>
+    </div>
+
+    {/* الشريط المتحرك */}
+    <div
+      className="partners-marquee"
+      aria-label="شعارات عملاء وشركاء إعمار مصر"
+    >
+      <div className="partners-marquee-track">
+        {/* المجموعة الأولى */}
+        <div className="partners-marquee-group">
+          {partners.map((partner) => (
+            <div
+              key={partner.name}
+              className="partner-marquee-card"
+            >
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                title={partner.name}
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* نسخة مكررة للحركة المتواصلة */}
+        <div
+          className="partners-marquee-group"
+          aria-hidden="true"
+        >
+          {partners.map((partner) => (
+            <div
+              key={`${partner.name}-duplicate`}
+              className="partner-marquee-card"
+            >
+              <img
+                src={partner.logo}
+                alt=""
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{/* COMPANY STATISTICS */}
+
+<section className="reveal-on-scroll relative overflow-hidden bg-[#071B3A] px-6 py-16 text-white sm:px-10 lg:px-12 lg:py-20">
+
+  {/* Background decoration */}
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full border border-[#D6B76C]/15"
+  />
+
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute -bottom-24 -right-20 h-72 w-72 rounded-full border border-[#D6B76C]/10"
+  />
+
+  <div className="relative z-10 mx-auto max-w-7xl">
+
+    {/* Section heading */}
+    <div className="mx-auto mb-12 max-w-3xl text-center">
+
+      <p className="text-sm font-bold tracking-[0.15em] text-[#D6B76C]">
+        EMMAR MISR IN NUMBERS
+      </p>
+
+      <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
+        أرقام تعكس حجم أعمالنا
+      </h2>
+
+      <p className="mt-5 leading-8 text-blue-100">
+        نعمل على دعم احتياجات الشركات والمشروعات من القوى العاملة،
+        مع التركيز على بناء علاقات عمل مستمرة.
+      </p>
+
+    </div>
+
+    {/* Statistics grid */}
+    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+
+      {/* Workers */}
+      <div className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center transition duration-300 hover:-translate-y-1 hover:border-[#D6B76C]/50 hover:bg-white/[0.07] sm:p-7">
+
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#D6B76C]/10 text-2xl text-[#D6B76C] transition duration-300 group-hover:bg-[#D6B76C] group-hover:text-[#071B3A]">
+          <FaUsers />
+        </div>
+
+        <p className="mt-5 text-3xl font-extrabold text-[#D6B76C] sm:text-4xl">
+  <CountUp end={5000} prefix="+" />
+</p>
+
+<h3 className="mt-3 text-sm font-semibold text-white sm:text-base">
+  عامل تم توظيفهم
+</h3>
+
+
+      </div>
+
+      {/* Companies */}
+      <div className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center transition duration-300 hover:-translate-y-1 hover:border-[#D6B76C]/50 hover:bg-white/[0.07] sm:p-7">
+
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#D6B76C]/10 text-2xl text-[#D6B76C] transition duration-300 group-hover:bg-[#D6B76C] group-hover:text-[#071B3A]">
+          <FaBuilding />
+        </div>
+
+        <p className="mt-5 text-3xl font-extrabold text-[#D6B76C] sm:text-4xl">
+  <CountUp end={300} prefix="+" />
+</p>
+
+<h3 className="mt-3 text-sm font-semibold text-white sm:text-base">
+  شركة عميلة
+</h3>
+      </div>
+
+      {/* Experience */}
+      <div className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center transition duration-300 hover:-translate-y-1 hover:border-[#D6B76C]/50 hover:bg-white/[0.07] sm:p-7">
+
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#D6B76C]/10 text-2xl text-[#D6B76C] transition duration-300 group-hover:bg-[#D6B76C] group-hover:text-[#071B3A]">
+          <FaClipboardCheck />
+        </div>
+
+    <p className="mt-5 text-3xl font-extrabold text-[#D6B76C] sm:text-4xl">
+  <CountUp end={10} prefix="+" />
+</p>
+
+<h3 className="mt-3 text-sm font-semibold text-white sm:text-base">
+  سنوات من الخبرة
+</h3>
+
+      </div>
+
+      {/* Customer relationships */}
+      <div className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center transition duration-300 hover:-translate-y-1 hover:border-[#D6B76C]/50 hover:bg-white/[0.07] sm:p-7">
+
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#D6B76C]/10 text-2xl text-[#D6B76C] transition duration-300 group-hover:bg-[#D6B76C] group-hover:text-[#071B3A]">
+          <FaHandshake />
+        </div>
+
+        <p className="mt-5 text-3xl font-extrabold text-[#D6B76C] sm:text-4xl">
+          98%
+        </p>
+
+        <h3 className="mt-3 text-sm font-semibold text-white sm:text-base">
+          رضا العملاء
+        </h3>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+      {/* ABOUT SECTION */}
+
+      <section className="reveal-on-scroll bg-[#F7F8FA] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="text-sm font-bold tracking-wide text-[#A78436]">
+              ABOUT EMMAR MISR
+            </p>
+
+            <h2 className="mt-4 text-3xl font-extrabold leading-relaxed text-[#071B3A] sm:text-4xl">
+              نفهم احتياجاتك،
+              <br />
+              ونعمل معك للوصول للحل المناسب
+            </h2>
+
+            <p className="mt-6 text-base leading-8 text-slate-600">
+              تختلف احتياجات الشركات باختلاف أنشطتها وطبيعة أعمالها.
+              لذلك تبدأ رحلة التعاون مع إعمار مصر بفهم متطلباتك ومناقشة
+              الحلول التي تتوافق مع احتياجات شركتك.
+            </p>
+
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              نؤمن بأهمية التواصل الواضح وبناء علاقات عمل تساعد على فهم
+              المتطلبات وتحديد خطوات التعاون.
+            </p>
+
+            <Link
+              to="/about"
+              className="group mt-8 inline-flex items-center gap-3 font-bold text-[#102F56] transition hover:text-[#A78436]"
+            >
+              تعرف على إعمار مصر
+
+              <FaArrowLeft className="transition-transform duration-300 group-hover:-translate-x-1" />
+            </Link>
+          </div>
+
+          <div className="relative">
+            <div className="absolute -bottom-5 -left-5 h-32 w-32 rounded-2xl bg-[#D6B76C]/20" />
+
+            <div className="relative rounded-[1.75rem] bg-white p-3 shadow-xl">
+              <img
+                src={COMPANYIMAGE}
+                alt="من أعمال وأنشطة إعمار مصر"
+                loading="lazy"
+                className="h-[300px] w-full rounded-[1.25rem] object-cover sm:h-[410px]"
+              />
+
+              <div className="absolute bottom-7 right-7 left-7 rounded-xl border border-slate-100 bg-white/95 p-5 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center gap-3">
+                  <FaHandshake className="shrink-0 text-3xl text-[#A78436]" />
+
+                  <div>
+                    <p className="font-bold text-[#071B3A]">
+                      شراكة تبدأ بالفهم
+                    </p>
+
+                    <p className="mt-1 text-sm leading-6 text-slate-500">
+                      لكل شركة احتياجاتها، ولكل تعاون خطواته.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES SECTION */}
+
+      <section className="reveal-on-scroll services-section px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-12 max-w-3xl text-center">
+            <p className="text-sm font-bold tracking-wide text-[#A78436]">
+              WHAT WE DO
+            </p>
+
+            <h2 className="mt-3 text-3xl font-extrabold text-[#071B3A] sm:text-4xl">
+              حلول تدعم احتياجات أعمالك
+            </h2>
+
+            <p className="mt-4 leading-8 text-slate-500">
+              نتعرف على احتياجاتك أولًا، ثم نناقش خدمات التعاون التي
+              تتناسب مع طبيعة نشاطك ومتطلبات التشغيل.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {services.map((service) => (
+              <article
+                key={service.number}
+                className="service-card group relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-[#D6B76C]/50 hover:shadow-xl sm:p-8"
+              >
+                <div className="absolute left-0 top-0 h-1 w-full origin-right scale-x-0 bg-[#D6B76C] transition-transform duration-300 group-hover:scale-x-100" />
+
+                <div className="flex items-center justify-between">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071B3A] text-2xl text-[#D6B76C] transition duration-300 group-hover:bg-[#D6B76C] group-hover:text-[#071B3A]">
+                    {service.icon}
+                  </div>
+
+                  <span className="text-3xl font-extrabold text-slate-100">
+                    {service.number}
+                  </span>
+                </div>
+
+                <h3 className="mt-7 text-xl font-bold text-[#071B3A]">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 leading-8 text-slate-500">
+                  {service.description}
+                </p>
+
+                <Link
+                  to="/services"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#102F56] transition hover:text-[#A78436]"
+                >
+                  تعرف على المزيد
+                  <FaArrowLeft />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW WE WORK */}
+
+      <section className="reveal-on-scroll bg-[#071B3A] px-6 py-20 text-white sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-14 max-w-3xl text-center">
+            <p className="text-sm font-bold tracking-wide text-[#D6B76C]">
+              HOW WE WORK
+            </p>
+
+            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
+              بداية واضحة لكل تعاون
+            </h2>
+
+            <p className="mt-4 leading-8 text-slate-300">
+              خطوات تبدأ بفهم احتياجات شركتك، وتساعد على تحديد المسار
+              المناسب للتعاون.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+                className="process-card relative rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:border-[#D6B76C]/50 hover:bg-white/[0.07] sm:p-8"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6B76C] text-lg font-extrabold text-[#071B3A]">
+                    {step.number}
+                  </span>
+
+                  {index === 0 && (
+                    <FaClipboardCheck className="text-2xl text-[#D6B76C]" />
+                  )}
+
+                  {index === 1 && (
+                    <FaBullseye className="text-2xl text-[#D6B76C]" />
+                  )}
+
+                  {index === 2 && (
+                    <FaCheckCircle className="text-2xl text-[#D6B76C]" />
+                  )}
+                </div>
+
+                <h3 className="mt-7 text-xl font-bold">
+                  {step.title}
+                </h3>
+
+                <p className="mt-4 leading-8 text-slate-300">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* JOB SEEKERS */}
+
+      <section className="reveal-on-scroll px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 overflow-hidden rounded-[2rem] bg-[#F7F8FA] p-7 sm:p-10 lg:grid-cols-2 lg:p-14">
+          <div>
+            <p className="text-sm font-bold tracking-wide text-[#A78436]">
+              CAREER OPPORTUNITIES
+            </p>
+
+            <h2 className="mt-3 text-3xl font-extrabold leading-relaxed text-[#071B3A] sm:text-4xl">
+              بتدور على فرصة عمل جديدة؟
+            </h2>
+
+            <p className="mt-5 leading-8 text-slate-600">
+              ابدأ خطوتك التالية وسجّل بياناتك من خلال صفحة الوظائف.
+              يمكنك إرسال طلبك ليتم الرجوع إلى بياناتك عند توفر فرصة
+              مناسبة.
+            </p>
+
+            <div className="mt-6 space-y-3">
+              <div className="flex items-start gap-3 text-slate-700">
+                <FaCheckCircle className="mt-1 shrink-0 text-[#A78436]" />
+                <span>أدخل بياناتك الأساسية بوضوح.</span>
+              </div>
+
+              <div className="flex items-start gap-3 text-slate-700">
+                <FaCheckCircle className="mt-1 shrink-0 text-[#A78436]" />
+                <span>اذكر خبراتك ومهاراتك العملية.</span>
+              </div>
+
+              <div className="flex items-start gap-3 text-slate-700">
+                <FaCheckCircle className="mt-1 shrink-0 text-[#A78436]" />
+                <span>تابع فرص التقديم المتاحة من خلال الشركة.</span>
+              </div>
+            </div>
+
+            <Link
+              to="/jobs"
+              className="group mt-8 inline-flex items-center justify-center gap-3 rounded-xl bg-[#071B3A] px-7 py-4 font-bold text-white transition duration-300 hover:bg-[#102F56]"
+            >
+              انتقل إلى صفحة الوظائف
+
+              <FaArrowLeft className="transition-transform duration-300 group-hover:-translate-x-1" />
+            </Link>
+          </div>
+
+          <div className="flex justify-center">
+            <img
+              src={RESUME}
+              alt="التقديم على فرص العمل"
+              loading="lazy"
+              className="resume-illustration max-h-[360px] w-full max-w-md object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+
+      <section className="reveal-on-scroll px-6 pb-20 sm:px-10 lg:px-12 lg:pb-24">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-l from-[#102F56] to-[#071B3A] px-7 py-12 text-white sm:px-12 sm:py-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-16 -top-20 h-64 w-64 rounded-full border border-[#D6B76C]/20"
+          />
+
+          <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3 text-[#D6B76C]">
+                <FaRegLightbulb className="text-xl" />
+
+                <p className="text-sm font-bold">
+                  LET'S WORK TOGETHER
+                </p>
+              </div>
+
+              <h2 className="mt-4 text-2xl font-extrabold leading-relaxed sm:text-3xl lg:text-4xl">
+                هل تبحث عن حلول تناسب احتياجات شركتك؟
+              </h2>
+
+              <p className="mt-4 max-w-2xl leading-8 text-slate-300">
+                تواصل مع إعمار مصر لمناقشة احتياجاتك والتعرف على خطوات
+                التعاون الممكنة.
               </p>
             </div>
 
-            {/* Button */}
-            <motion.button
-              whileHover={{ y: -3, scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.2 }}
-              className="bg-white text-blue-800 px-6 py-2 rounded-xl font-bold hover:bg-gray-100 transition"
+            <Link
+              to="/contact"
+              className="inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-[#D6B76C] px-7 py-4 font-bold text-[#071B3A] transition duration-300 hover:-translate-y-1 hover:bg-[#E7CC8B]"
             >
-              تصفح الوظائف
-            </motion.button>
-          </motion.div>
-        </ScrollReveal>
+              <FaPhoneAlt />
+              تواصل معنا
+              <FaArrowLeft />
+            </Link>
+          </div>
+        </div>
       </section>
-    </>
+    </main>
   );
 }
+function CountUp({
+  end,
+  prefix = "",
+  suffix = "",
+  duration = 1800,
+}) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const element = elementRef.current;
+
+    if (!element) return;
+
+    // احترام إعداد تقليل الحركة في الجهاز
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setCount(end);
+      return;
+    }
+
+    let animationFrame;
+    let observer;
+
+    const startAnimation = () => {
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+        const progress = Math.min(
+          (currentTime - startTime) / duration,
+          1
+        );
+
+        // تسريع الحركة في البداية وتهدئتها في النهاية
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+        const currentCount = Math.floor(
+          end * easedProgress
+        );
+
+        setCount(currentCount);
+
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate);
+        } else {
+          setCount(end);
+        }
+      };
+
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    // تبدأ الحركة عندما يظهر الرقم على الشاشة
+    observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startAnimation();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer?.disconnect();
+
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [end, duration]);
+
+  return (
+    <span ref={elementRef}>
+      {prefix}
+      {count.toLocaleString("en-US")}
+      {suffix}
+    </span>
+  );
+} 
