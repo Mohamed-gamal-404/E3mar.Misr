@@ -57,7 +57,7 @@ export default function Navbar() {
             </span>
 
             <span className="mt-0.5 text-[10px] font-medium tracking-[0.04em] text-[#747E8B] sm:text-[11px]">
-              لخدمات القوى العاملة والتشغيل
+            لخدمات المصانع والشركات
             </span>
           </div>
         </Link>

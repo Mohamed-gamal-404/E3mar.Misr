@@ -54,14 +54,14 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  // أضف شعارات العملاء الحقيقية هنا عند توفرها.
-  // مثال:
-  // { name: "Company Name", logo: "/partners/company-logo.png" }
-
   const partners = [
   {
     name: "BETA ELECTRIC",
     logo: "/partners/beta-electric.jpg",
+  },
+    {
+    name: "AMAZON",
+    logo: "/partners/AMAZON.png",
   },
   {
     name: "Eastern Company S.A.E.",
@@ -72,7 +72,7 @@ export default function Home() {
     logo: "/partners/fine.png",
   },
   {
-    name: "شركة النيل",
+    name: "شركة يونيباك النيل",
     logo: "/partners/partner-nile.svg",
   },
   {
@@ -90,7 +90,30 @@ export default function Home() {
   {
     name: "Suzuki",
     logo: "/partners/Suzuki.png",
-  }
+  },
+    {
+    name: "dsepak",
+    logo: "/partners/debak.png",
+  },
+    {
+    name: "Serioplast",
+    logo: "/partners/Serioplast.png",
+  },
+  {
+    name: "ABRAR TRADING ",
+    logo: "/partners/Abrar.png",
+  },
+  {
+    name: "Edita ",
+    logo: "/partners/edita.png",
+  },
+  
+  {
+    name: "Cairopak ",
+    logo: "/partners/cairopak.png",
+  },
+  
+
 ];
 
   const services = [
@@ -298,7 +321,7 @@ export default function Home() {
       </section>
 
 {/* MOVING PARTNERS LOGOS */}
-{partners.length > 0 && (
+{partners.length > 1 && (
   <section className="reveal-on-scroll partners-section bg-white py-16 sm:py-20">
     <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
       <div className="mb-10 text-center">
@@ -316,7 +339,7 @@ export default function Home() {
       </div>
     </div>
 
-    {/* الشريط المتحرك */}
+    {/* Partenars-Line*/}
     <div
       className="partners-marquee"
       aria-label="شعارات عملاء وشركاء إعمار مصر"
@@ -340,7 +363,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* نسخة مكررة للحركة المتواصلة */}
+        {/* Infinty Moving Line*/}
         <div
           className="partners-marquee-group"
           aria-hidden="true"
@@ -770,7 +793,7 @@ function CountUp({
 
     if (!element) return;
 
-    // احترام إعداد تقليل الحركة في الجهاز
+
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -792,7 +815,7 @@ function CountUp({
           1
         );
 
-        // تسريع الحركة في البداية وتهدئتها في النهاية
+        // اللوجيك بتاع السيكشن الي فيه ارقام ( عمال - شركات -رضا العملاء)
         const easedProgress = 1 - Math.pow(1 - progress, 3);
 
         const currentCount = Math.floor(
@@ -811,7 +834,7 @@ function CountUp({
       animationFrame = requestAnimationFrame(animate);
     };
 
-    // تبدأ الحركة عندما يظهر الرقم على الشاشة
+    // اللوجيك بتاع بداية الحركة بتاعت الرقم
     observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

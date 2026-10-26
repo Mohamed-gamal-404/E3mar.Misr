@@ -13,7 +13,6 @@ import {
   FaExclamationCircle,
   FaHandshake,
   FaBriefcase,
-  FaClock,
   FaShieldAlt,
 } from "react-icons/fa";
 

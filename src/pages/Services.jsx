@@ -12,7 +12,6 @@ import {
   FaBolt,
   FaBullseye,
   FaShieldAlt,
-  FaUsers,
   FaArrowLeft,
   FaCheckCircle,
   FaClipboardList,
@@ -462,7 +461,7 @@ export default function Services() {
 
               <div className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2">
 
-                {features.map((feature, index) => (
+                {features.map((feature) => (
 
                   <motion.div
                     key={feature.title}
