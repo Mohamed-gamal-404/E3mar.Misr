@@ -834,7 +834,7 @@ function CountUp({
       animationFrame = requestAnimationFrame(animate);
     };
 
-    // اللوجيك بتاع بداية الحركة بتاعت الرقم
+    // اللوجيك بتاع بداية ال
     observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

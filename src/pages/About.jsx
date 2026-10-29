@@ -20,6 +20,10 @@ import e3marBui from "../assets/images/e3mar-2.jpg";
 
 import ScrollReveal from "../components/ScrollReveal";
 
+/* =========================================
+   COMPANY VALUES
+========================================= */
+
 const values = [
   {
     icon: <FaShieldAlt />,
@@ -42,6 +46,10 @@ const values = [
     desc: "نؤمن بأهمية التواصل ومتابعة احتياجات العملاء خلال مراحل التعاون.",
   },
 ];
+
+/* =========================================
+   WORK PROCESS
+========================================= */
 
 const steps = [
   {
@@ -70,6 +78,10 @@ const steps = [
   },
 ];
 
+/* =========================================
+   COMPANY HIGHLIGHTS
+========================================= */
+
 const highlights = [
   {
     icon: <FaUsers />,
@@ -88,12 +100,85 @@ const highlights = [
   },
 ];
 
+/* =========================================
+   CLIENTS & COMPANIES
+========================================= */
+
+// ضع ملفات الشعارات داخل public/partners.
+// عدّل أسماء الشركات حسب أسمائها الرسمية قبل النشر.
+
+const clients = [
+  {
+    name: "BETA ELECTRIC",
+    logo: "/partners/beta-electric.jpg",
+  },
+  {
+    name: "Eastern Company S.A.E.",
+    logo: "/partners/eastern-company.png",
+  },
+  {
+    name: "FINE",
+    logo: "/partners/fine.png",
+  },
+  {
+    name: "Amazon.eg",
+    logo: "/partners/AMAZON.png",
+  },
+  {
+    name: "الاهرام للصناعات الغذائية",
+    logo: "/partners/al-ahram-food.png",
+  },
+  {
+    name: "Cairopac",
+    logo: "/partners/cairopak.png",
+  },
+  {
+    name: "Carreir",
+    logo: "/partners/Carreir.png",
+  },
+  {
+    name: "aramex",
+    logo: "/partners/aramex.png",
+  },
+  {
+    name: "Suzuki",
+    logo: "/partners/Suzuki.png",
+  },
+  {
+    name: "Edita",
+    logo: "/partners/edita.png",
+  },
+  {
+    name: "يونيباك النيل",
+    logo: "/partners/partner-nile.svg",
+  },
+  {
+    name: "Serioplast",
+    logo: "/partners/Serioplast.png",
+  },
+  {
+    name:"Abrar Trading",
+    logo: "/partners/Abrar.png",
+  },
+  {
+    name: "ِdepak",
+    logo: "/partners/debak.png",
+  },
+];
+
+/* =========================================
+   ABOUT PAGE
+========================================= */
+
 export default function About() {
   return (
-    <main dir="rtl" className="overflow-hidden bg-white text-[#071B3A]">
-      {/* =========================================
+    <main
+      dir="rtl"
+      className="overflow-hidden bg-white text-[#071B3A]"
+    >
+      {/* =====================================
           HERO
-      ========================================= */}
+      ===================================== */}
 
       <section className="relative isolate flex min-h-[360px] items-center overflow-hidden bg-[#071B3A] sm:min-h-[420px] lg:min-h-[470px]">
         <img
@@ -178,9 +263,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* =========================================
+      {/* =====================================
           ABOUT EMMAR MISR
-      ========================================= */}
+      ===================================== */}
 
       <section className="px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
@@ -229,15 +314,15 @@ export default function About() {
               <h2 className="mt-4 text-3xl font-extrabold leading-relaxed text-[#071B3A] sm:text-4xl">
                 إعمار مصر
                 <span className="block text-[#A78436]">
-                  لخدمات القوى العاملة
+                  لخدمات المصانع والشركات
                 </span>
               </h2>
 
               <div className="mt-6 space-y-5 text-base leading-8 text-slate-600">
                 <p>
                   إعمار مصر شركة متخصصة في توفير العمالة الماهرة وغير
-                  الماهرة للمؤسسات والشركات في مختلف القطاعات داخل مصر
-                  وخارجها، وفقًا لاحتياجات العمل وطبيعة كل نشاط.
+                  الماهرة للمصانع والشركات والمؤسسات، وفقًا لاحتياجات
+                  العمل وطبيعة كل نشاط.
                 </p>
 
                 <p>
@@ -276,11 +361,87 @@ export default function About() {
         </div>
       </section>
 
-      {/* =========================================
-          OUR ROLE
-      ========================================= */}
+      {/* =====================================
+          CLIENTS & COMPANIES GRID
+      ===================================== */}
 
       <section className="bg-[#F7F8FA] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto max-w-7xl">
+
+          <ScrollReveal>
+            <div className="mx-auto mb-12 max-w-3xl text-center">
+              <p className="text-sm font-bold tracking-[0.15em] text-[#A78436]">
+                OUR CLIENTS
+              </p>
+
+              <h2 className="mt-3 text-3xl font-extrabold text-[#071B3A] sm:text-4xl">
+                شركات نفخر بالتعاون معها
+              </h2>
+
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-500">
+                نعتز بعلاقات العمل التي تجمعنا بالشركات والمؤسسات
+                التي تعاملنا معها، ونسعى إلى بناء تعاون قائم على
+                الثقة والوضوح.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5">
+            {clients.map((client, index) => (
+              <ScrollReveal
+                key={client.name}
+                delay={index * 0.06}
+              >
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="group flex h-full min-h-[160px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-300 hover:border-[#D6B76C]/60 hover:shadow-lg sm:min-h-[180px] sm:p-6"
+                >
+                  <div className="flex h-[90px] w-full items-center justify-center sm:h-[100px]">
+                    <img
+                      src={client.logo}
+                      alt={`شعار ${client.name}`}
+                      loading="lazy"
+                      className="max-h-full w-full object-contain transition duration-300 group-hover:scale-[1.04]"
+                    />
+                  </div>
+
+                  <div className="mt-4 h-px w-10 bg-[#D6B76C]/70 transition-all duration-300 group-hover:w-16" />
+
+                  <p className="mt-3 text-center text-xs font-semibold leading-6 text-slate-600 sm:text-sm">
+                    {client.name}
+                  </p>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal>
+            <div className="mt-10 text-center">
+              <p className="text-sm leading-7 text-slate-500">
+                نتطلع إلى بناء علاقات تعاون جديدة مع المزيد من
+                الشركات والمؤسسات.
+              </p>
+
+              <Link
+                to="/contact"
+                className="group mt-5 inline-flex items-center justify-center gap-3 rounded-xl bg-[#071B3A] px-6 py-3.5 font-bold text-white transition duration-300 hover:bg-[#102F56]"
+              >
+                ناقش احتياجات شركتك
+
+                <FaArrowLeft className="text-sm text-[#D6B76C] transition-transform duration-300 group-hover:-translate-x-1" />
+              </Link>
+            </div>
+          </ScrollReveal>
+
+        </div>
+      </section>
+
+      {/* =====================================
+          OUR ROLE
+      ===================================== */}
+
+      <section className="px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -334,11 +495,11 @@ export default function About() {
         </div>
       </section>
 
-      {/* =========================================
+      {/* =====================================
           OUR VALUES
-      ========================================= */}
+      ===================================== */}
 
-      <section className="px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+      <section className="bg-[#F7F8FA] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -386,9 +547,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* =========================================
+      {/* =====================================
           HOW WE WORK
-      ========================================= */}
+      ===================================== */}
 
       <section className="relative overflow-hidden bg-[#071B3A] px-6 py-20 text-white sm:px-10 lg:px-12 lg:py-24">
         <div
@@ -454,9 +615,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* =========================================
-          CLIENT PARTNERSHIP MESSAGE
-      ========================================= */}
+      {/* =====================================
+          FINAL CTA
+      ===================================== */}
 
       <section className="px-6 py-16 sm:px-10 lg:px-12 lg:py-20">
         <ScrollReveal>
