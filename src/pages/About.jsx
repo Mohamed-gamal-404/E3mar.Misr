@@ -108,6 +108,22 @@ const highlights = [
 // عدّل أسماء الشركات حسب أسمائها الرسمية قبل النشر.
 
 const clients = [
+    {
+    name: "Amazon.eg",
+    logo: "/partners/AMAZON.png",
+  },
+  {
+    name: "Carreir",
+    logo: "/partners/Carreir.png",
+  },
+    {
+    name: "aramex",
+    logo: "/partners/aramex.png",
+  },
+  {
+    name: "Suzuki",
+    logo: "/partners/Suzuki.png",
+  },
   {
     name: "BETA ELECTRIC",
     logo: "/partners/beta-electric.jpg",
@@ -121,28 +137,12 @@ const clients = [
     logo: "/partners/fine.png",
   },
   {
-    name: "Amazon.eg",
-    logo: "/partners/AMAZON.png",
-  },
-  {
     name: "الاهرام للصناعات الغذائية",
     logo: "/partners/al-ahram-food.png",
   },
   {
     name: "Cairopac",
     logo: "/partners/cairopak.png",
-  },
-  {
-    name: "Carreir",
-    logo: "/partners/Carreir.png",
-  },
-  {
-    name: "aramex",
-    logo: "/partners/aramex.png",
-  },
-  {
-    name: "Suzuki",
-    logo: "/partners/Suzuki.png",
   },
   {
     name: "Edita",

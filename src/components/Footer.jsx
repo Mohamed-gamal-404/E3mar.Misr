@@ -136,7 +136,6 @@ export default function Footer() {
                   className="group inline-flex items-center gap-2 text-sm text-slate-300 transition-colors duration-200 hover:text-[#D6B76C]"
                 >
                   <FaArrowLeft className="text-[9px] text-[#D6B76C] opacity-0 transition-all duration-200 group-hover:-translate-x-1 group-hover:opacity-100" />
-
                   <span>{item.label}</span>
                 </Link>
               ))}
@@ -211,9 +210,8 @@ export default function Footer() {
                     dir="ltr"
                     className="inline-block break-all text-sm text-slate-200 transition-colors hover:text-[#D6B76C]"
                   >
-                    info@emaarmasr.com
+                    info@emaarmisr.com
                   </a>
-
                 </div>
               </div>
 
